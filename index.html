@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jumper Exchange — Cross-Chain Bridge &amp; Swap Guide: Fees, Safety, Routes &amp; How It Works (2026)</title>
+  <meta name="description" content="Complete Jumper Exchange guide (2026): how cross-chain bridging and swapping works on Jumper, best routes, fees explained, supported chains, slippage, security risks, Li.Fi aggregation, step-by-step how to use Jumper Exchange, and a deep FAQ.">
+  <meta name="author" content="Crypto Finance Experts">
+  <link rel="canonical" href="https://jumper-exchange-guide.example.com/">
+
+  <link rel="icon" type="image/jpeg" href="Jumper.Exchange.jpeg">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://jumper-exchange-guide.example.com/">
+  <meta property="og:title" content="Jumper Exchange — Cross-Chain Bridge &amp; Swap Guide (2026)">
+  <meta property="og:description" content="Practical Jumper Exchange guide: cross-chain bridging routes, fees, slippage, supported networks, Li.Fi aggregation, security checklist, and troubleshooting.">
+  <meta property="og:image" content="cover.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://jumper-exchange-guide.example.com/">
+  <meta name="twitter:title" content="Jumper Exchange — Cross-Chain Bridge &amp; Swap Guide (2026)">
+  <meta name="twitter:description" content="Deep Jumper Exchange guide: routes, fees, slippage, Li.Fi aggregation, security, and cross-chain bridging best practices for 2026.">
+  <meta name="twitter:image" content="cover.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cyan:   #06D6A0;
+      --cyan-2: #05B386;
+      --cyan-3: #047A5C;
+      --blue:   #3B82F6;
+      --accent: #F0FFF4;
+
+      --ink:    #F0FDFA;
+      --muted:  #94A3B8;
+      --muted-2:#64748B;
+
+      --bg:     #060A0F;
+      --panel:  #0A1018;
+      --panel-2:#0D1520;
+      --line:   rgba(6,214,160,.12);
+      --line-n: rgba(255,255,255,.07);
+
+      --ok:   #22C55E;
+      --warn: #F59E0B;
+      --error:#EF4444;
+
+      --shadow: 0 20px 50px rgba(0,0,0,.70);
+      --glow:   0 0 40px rgba(6,214,160,.12);
+      --r:  12px;
+      --rl: 20px;
+      --gap: 1.25rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    html { scroll-behavior: smooth }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--muted);
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 900px 600px at 0% 0%, rgba(6,214,160,.08) 0%, transparent 55%),
+        radial-gradient(ellipse 700px 500px at 100% 15%, rgba(59,130,246,.06) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 400px at 50% 100%, rgba(5,179,134,.05) 0%, transparent 55%);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3, h4 {
+      font-family: 'Syne', system-ui, sans-serif;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    h2 {
+      font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+      font-weight: 700;
+      margin-top: 2rem;
+      padding-top: .75rem;
+      border-top: 1px solid var(--line-n);
+    }
+    h3 {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 600;
+      color: #CCFBF1;
+    }
+    p, li, td, th { font-size: 1rem; line-height: 1.75 }
+    .lead {
+      font-size: 1.1rem;
+      color: #CBD5E1;
+      line-height: 1.8;
+    }
+    strong { color: #E2FFF9; font-weight: 600 }
+
+    a { color: var(--cyan); text-decoration: none; transition: color .15s }
+    a:hover { color: #34EDB3; text-decoration: underline }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem }
+    img { max-width: 100%; height: auto; display: block }
+
+    /* ─── HERO ─── */
+    header.hero {
+      padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2rem, 5vw, 4rem);
+      position: relative;
+      border-bottom: 1px solid var(--line-n);
+      overflow: hidden;
+    }
+    header.hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 700px 350px at 20% 50%, rgba(6,214,160,.09), transparent 60%),
+        radial-gradient(ellipse 500px 300px at 85% 30%, rgba(59,130,246,.06), transparent 55%);
+      pointer-events: none;
+    }
+
+    /* ─── HERO CARD ─── */
+    .hero-card {
+      position: relative;
+      background: rgba(255,255,255,.028);
+      border: 1px solid rgba(6,214,160,.15);
+      border-radius: var(--rl);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow), var(--glow);
+      backdrop-filter: blur(12px);
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(6,214,160,.35), transparent);
+      border-radius: var(--rl) var(--rl) 0 0;
+    }
+
+    /* ─── BRAND ROW ─── */
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+    .brand-logo {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      border: 1px solid rgba(6,214,160,.20);
+      background: rgba(6,214,160,.06);
+      padding: .3rem;
+      object-fit: contain;
+      box-shadow: 0 8px 20px rgba(0,0,0,.40), 0 0 14px rgba(6,214,160,.10);
+      flex: 0 0 auto;
+    }
+    .brand-label { color: var(--muted-2); font-size: .9rem; font-weight: 500 }
+    .brand-sub   { color: var(--muted);   font-size: .85rem }
+
+    /* ─── CTA ─── */
+    .cta-center { display: flex; justify-content: center; margin-top: 1.75rem }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: linear-gradient(135deg, #06D6A0 0%, #05B386 50%, #047A5C 100%);
+      color: #032B22;
+      padding: 1.15rem 2.6rem;
+      border-radius: 14px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: .1px;
+      box-shadow:
+        0 0 0 1px rgba(6,214,160,.25),
+        0 6px 18px rgba(6,214,160,.25),
+        0 20px 45px rgba(5,179,134,.20);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+    .cta:hover {
+      transform: translateY(-3px) scale(1.025);
+      filter: brightness(1.07);
+      box-shadow:
+        0 0 0 1px rgba(6,214,160,.40),
+        0 10px 28px rgba(6,214,160,.35),
+        0 28px 55px rgba(5,179,134,.28);
+      text-decoration: none;
+      color: #032B22;
+    }
+    .cta-icon { font-size: 1.25rem }
+
+    /* ─── NOTE ─── */
+    .note {
+      border-left: 3px solid var(--cyan);
+      padding: .85rem 1.1rem;
+      background: rgba(6,214,160,.06);
+      border-radius: 0 10px 10px 0;
+      color: #CCFBF1;
+      margin-top: 1rem;
+    }
+
+    /* ─── STEP SECTION ─── */
+    section.step-guide { padding: clamp(2.5rem, 6vw, 4rem) 0 }
+    .steps { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .step {
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--line-n);
+      border-top: 2px solid rgba(6,214,160,.22);
+      border-radius: var(--r);
+      padding: 1.35rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,.40);
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(6,214,160,.35);
+      box-shadow: 0 18px 36px rgba(0,0,0,.50), 0 0 20px rgba(6,214,160,.07);
+    }
+    .step .icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: inline-grid; place-items: center;
+      background: rgba(6,214,160,.10);
+      margin-bottom: .75rem;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--cyan);
+      border: 1px solid rgba(6,214,160,.18);
+    }
+
+    /* ─── MAIN CARD ─── */
+    main .card {
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--line-n);
+      border-radius: var(--r);
+      padding: 1.5rem;
+      margin: 1.25rem 0;
+      box-shadow: 0 10px 24px rgba(0,0,0,.40);
+    }
+    main .card h2:first-child,
+    main .card > h2 { margin-top: 0; border-top: none; padding-top: 0 }
+
+    /* ─── TOC ─── */
+    .toc {
+      border: 1px solid rgba(6,214,160,.15);
+      background: rgba(6,214,160,.04);
+      border-radius: var(--r);
+      padding: 1.2rem 1.4rem;
+    }
+    .toc strong { color: var(--ink); font-family: 'Syne', sans-serif }
+    .toc ul { margin: .6rem 0 0; padding-left: 1.15rem }
+    .toc li { margin: .3rem 0; font-size: .97rem }
+    .toc a { font-weight: 600 }
+
+    /* ─── GRID 2 ─── */
+    .grid-2 { display: grid; gap: var(--gap); grid-template-columns: 1fr }
+    .mini {
+      background: rgba(255,255,255,.02);
+      border: 1px solid var(--line-n);
+      border-radius: var(--r);
+      padding: 1.1rem;
+    }
+    .mini h3 { margin-bottom: .4rem }
+    .kpi-badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .6rem }
+    .kpi-badges span {
+      border: 1px solid rgba(6,214,160,.18);
+      background: rgba(6,214,160,.07);
+      color: #A7F3D0;
+      padding: .28rem .55rem;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .callout-grid { display: grid; gap: var(--gap); grid-template-columns: 1fr; margin-top: .9rem }
+
+    /* ─── TABLE ─── */
+    .table-wrap { overflow-x: auto; border-radius: var(--r); border: 1px solid var(--line-n) }
+    table { width: 100%; border-collapse: collapse; min-width: 560px }
+    th, td { padding: .85rem 1rem; border-bottom: 1px solid var(--line-n); text-align: left }
+    th {
+      background: rgba(6,214,160,.06);
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+    }
+    tr.hi { background: rgba(6,214,160,.04) }
+    tr:hover td { background: rgba(255,255,255,.02) }
+    tr:last-child td { border-bottom: none }
+
+    .ok   { color: var(--ok) }
+    .warn { color: var(--warn) }
+    .err  { color: var(--error) }
+
+    /* ─── EEAT ─── */
+    .eeat {
+      background: rgba(255,255,255,.022);
+      border: 1px solid rgba(6,214,160,.13);
+      border-radius: var(--r);
+      padding: 1.5rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,.40);
+    }
+    .eeat h2 { margin-top: 0; border-top: none; padding-top: 0 }
+
+    /* ─── FAQ ─── */
+    .faq-item { border-bottom: 1px solid var(--line-n); padding: 1rem 0 }
+    .faq-item:last-child { border-bottom: none }
+    .faq-button {
+      all: unset;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      width: 100%; cursor: pointer; gap: 1rem;
+    }
+    .faq-button:focus-visible { outline: 2px solid var(--cyan); border-radius: 4px }
+    .faq-button h3 { margin: 0; font-weight: 700; font-size: 1rem; line-height: 1.4 }
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height .28s ease }
+    .faq-content.open { padding-top: .7rem }
+    .faq-plus {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.4rem;
+      color: var(--cyan); flex: 0 0 auto;
+      line-height: 1; margin-top: .05rem;
+      transition: transform .2s;
+    }
+    .faq-button[aria-expanded="true"] .faq-plus { transform: rotate(45deg) }
+
+    /* ─── CHAIN BADGES ─── */
+    .chain-grid {
+      display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .75rem;
+    }
+    .chain {
+      border: 1px solid var(--line-n);
+      background: rgba(255,255,255,.03);
+      border-radius: 8px;
+      padding: .4rem .75rem;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #CBD5E1;
+    }
+
+    @media (min-width: 860px) {
+      .steps { grid-template-columns: repeat(4, 1fr) }
+      .grid-2 { grid-template-columns: 1fr 1fr }
+      .callout-grid { grid-template-columns: 1fr 1fr }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero" role="banner">
+  <div class="container">
+    <div class="hero-card">
+
+      <div class="brand-row">
+        <img class="brand-logo" src="Jumper.Exchange.jpeg" alt="Jumper Exchange logo">
+        <div>
+          <div class="brand-label">Complete Operational Guide</div>
+          <div class="brand-sub">Cross-Chain Bridging &amp; Swapping · Routes · Fees · Safety</div>
+        </div>
+      </div>
+
+      <h1>Jumper Exchange</h1>
+      <p class="lead" style="margin-top:.75rem">
+        The complete guide to <strong>Jumper Exchange</strong> — the cross-chain <strong>bridge and swap aggregator</strong>
+        powered by <strong>Li.Fi</strong>. Understand how Jumper finds the best <strong>routes across chains</strong>,
+        how <strong>bridging fees and slippage</strong> work in practice, which networks and tokens are supported,
+        what <strong>smart-contract and bridge risks</strong> look like, and how to move assets cross-chain
+        safely without overpaying or getting stuck.
+      </p>
+
+      <div class="cta-center">
+        <a href="#" class="cta" aria-label="Open Jumper Exchange">
+          <span class="cta-icon">⚡</span> Launch Jumper Exchange
+        </a>
+      </div>
+
+      <div class="note">
+        <strong>Key principle:</strong> Jumper aggregates bridges and DEXs so you always get a competitive route —
+        but cross-chain transactions are irreversible. Verify the destination chain, token address,
+        and estimated output before confirming any transaction.
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ STEPS ═══════════════ -->
+<section class="step-guide" aria-labelledby="how-works">
+  <div class="container">
+    <h2 id="how-works" style="margin-top:0; border-top:none; padding-top:0">
+      How Jumper Exchange Works: Connect → Select Route → Bridge → Receive
+    </h2>
+    <div class="steps" role="list">
+
+      <article class="step" role="listitem">
+        <div class="icon">01</div>
+        <h3>Connect your wallet &amp; select chains</h3>
+        <p>Connect a non-custodial wallet (MetaMask, Rabby, WalletConnect). Choose the source chain and destination chain — Jumper supports 30+ EVM and non-EVM networks.</p>
+      </article>
+
+      <article class="step" role="listitem">
+        <div class="icon">02</div>
+        <h3>Pick token pair &amp; compare routes</h3>
+        <p>Enter the token you want to send and the token you want to receive. Jumper surfaces multiple routes ranked by speed, cost, and output amount — you choose what matters most.</p>
+      </article>
+
+      <article class="step" role="listitem">
+        <div class="icon">03</div>
+        <h3>Review fees, slippage &amp; confirm</h3>
+        <p>Inspect the full fee breakdown: bridge fee, DEX swap fee, gas on source and destination chains, and estimated slippage. Only confirm when the numbers match your expectations.</p>
+      </article>
+
+      <article class="step" role="listitem">
+        <div class="icon">04</div>
+        <h3>Track &amp; receive on destination chain</h3>
+        <p>Jumper provides real-time transaction tracking. Once the bridge finalises, tokens arrive in your wallet on the destination chain — no separate claiming step in most cases.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main class="container" role="main">
+
+  <!-- TOC -->
+  <section class="card toc" aria-label="Table of Contents">
+    <strong>On this page — Jumper Exchange:</strong>
+    <ul>
+      <li><a href="#overview">What is Jumper Exchange and how does Li.Fi aggregation work</a></li>
+      <li><a href="#supported-chains">Supported chains, networks, and tokens</a></li>
+      <li><a href="#fees">Jumper Exchange fees: bridge fees, swap fees &amp; gas explained</a></li>
+      <li><a href="#routes">How Jumper picks the best cross-chain route</a></li>
+      <li><a href="#how-to">How to use Jumper Exchange: step-by-step tutorial</a></li>
+      <li><a href="#slippage">Slippage on Jumper: what it is and how to set it correctly</a></li>
+      <li><a href="#safety">Is Jumper Exchange safe? Bridge &amp; smart-contract risk analysis</a></li>
+      <li><a href="#comparison">Jumper vs other bridge aggregators: key trade-offs</a></li>
+      <li><a href="#best-practices">Best practices: how to bridge assets without costly mistakes</a></li>
+      <li><a href="#troubleshooting">Troubleshooting: stuck transactions, missing funds, failed bridges</a></li>
+      <li><a href="#eeat">Authoritative sources &amp; references</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="card" id="overview">
+    <h2>What Is Jumper Exchange and How Does Li.Fi Aggregation Work?</h2>
+    <p>
+      <strong>Jumper Exchange</strong> is the consumer-facing interface built on the <strong>Li.Fi protocol</strong> —
+      a cross-chain liquidity infrastructure that aggregates bridges, DEX aggregators, and on-chain swap routers
+      into a single routing engine. Instead of manually choosing between Stargate, Hop, Across, Connext,
+      or Celer for every transfer, Jumper queries them all simultaneously and returns the best available path.
+    </p>
+    <p>
+      A single Jumper transaction can combine multiple steps: a swap on a DEX on the source chain,
+      a bridge to the destination chain, and a second swap into the target token — all in one user-approved transaction flow.
+      This multi-hop routing is what distinguishes Jumper from single-bridge tools.
+    </p>
+
+    <div class="callout-grid">
+      <div class="mini">
+        <h3>For casual users</h3>
+        <p class="muted" style="color:var(--muted)">Move tokens between chains without researching individual bridges. Get a competitive rate and a simple UI with real-time route comparison.</p>
+        <div class="kpi-badges">
+          <span>Simple UX</span><span>No research needed</span><span>30+ chains</span>
+        </div>
+      </div>
+      <div class="mini">
+        <h3>For power users</h3>
+        <p class="muted" style="color:var(--muted)">Full route transparency — see which bridge and which DEX is being used, estimated gas on each chain, bridge finality time, and per-step fee breakdown.</p>
+        <div class="kpi-badges">
+          <span>Route details</span><span>Custom slippage</span><span>Advanced mode</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <strong>Li.Fi vs Jumper:</strong> Li.Fi is the underlying protocol and API used by developers.
+      Jumper is the polished end-user product. Same routing engine, different audience.
+    </div>
+  </section>
+
+  <!-- SUPPORTED CHAINS -->
+  <section class="card" id="supported-chains">
+    <h2>Jumper Exchange Supported Chains, Networks, and Tokens</h2>
+    <p>
+      Jumper supports a broad and growing list of EVM-compatible networks as well as select non-EVM chains.
+      Supported networks include but are not limited to:
+    </p>
+
+    <div class="chain-grid" role="list" aria-label="Supported chains">
+      <span class="chain">Ethereum</span>
+      <span class="chain">Arbitrum</span>
+      <span class="chain">Optimism</span>
+      <span class="chain">Base</span>
+      <span class="chain">Polygon</span>
+      <span class="chain">BNB Chain</span>
+      <span class="chain">Avalanche</span>
+      <span class="chain">zkSync Era</span>
+      <span class="chain">Linea</span>
+      <span class="chain">Scroll</span>
+      <span class="chain">Gnosis</span>
+      <span class="chain">Fantom</span>
+      <span class="chain">Solana</span>
+      <span class="chain">+ more</span>
+    </div>
+
+    <p style="margin-top:1rem">
+      Token coverage is broad — most major stablecoins (USDC, USDT, DAI), native gas tokens (ETH, BNB, MATIC),
+      and hundreds of ERC-20s are supported. Token availability on a specific bridge route depends on which
+      bridges support that token pair, which Jumper surfaces automatically.
+    </p>
+
+    <div class="note">
+      <strong>Check before bridging:</strong> Not every token is available on every chain via every bridge.
+      Always verify the specific route and token is supported on the Jumper interface before expecting a route to exist.
+    </div>
+  </section>
+
+  <!-- FEES -->
+  <section class="card" id="fees">
+    <h2>Jumper Exchange Fees: Bridge Fees, Swap Fees, and Gas — What You Actually Pay</h2>
+    <p>
+      Understanding the full cost of a Jumper transaction requires separating four distinct fee components.
+      Many users are surprised by the total cost because they only account for the bridge fee.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Fee breakdown">
+        <thead>
+          <tr>
+            <th>Fee type</th>
+            <th>Who charges it</th>
+            <th>Typical range</th>
+            <th>Avoidable?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Bridge protocol fee</td>
+            <td>Underlying bridge (e.g. Stargate, Hop)</td>
+            <td>0.01% – 0.1%</td>
+            <td class="warn">Varies by route</td>
+          </tr>
+          <tr>
+            <td>DEX swap fee</td>
+            <td>DEX used for source/dest swap</td>
+            <td>0.01% – 0.3%</td>
+            <td class="ok">Choose direct bridge if possible</td>
+          </tr>
+          <tr class="hi">
+            <td>Source chain gas</td>
+            <td>Source network validators</td>
+            <td>Varies widely</td>
+            <td class="ok">Time transactions off-peak</td>
+          </tr>
+          <tr>
+            <td>Destination chain gas</td>
+            <td>Destination network validators</td>
+            <td>Often sponsored or low</td>
+            <td class="ok">L2s are much cheaper</td>
+          </tr>
+          <tr class="hi">
+            <td>Li.Fi / Jumper fee</td>
+            <td>Li.Fi protocol</td>
+            <td>Small % on certain routes</td>
+            <td class="warn">Built into route</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Real total cost:</strong> Always look at the "You receive" output on the Jumper UI — that figure
+      already deducts all fees except destination gas. The difference between your input and that output
+      is your true all-in cost of the bridge + swap.
+    </div>
+  </section>
+
+  <!-- ROUTES -->
+  <section class="card" id="routes">
+    <h2>How Jumper Finds the Best Cross-Chain Route: Speed, Cost, and Output Trade-offs</h2>
+    <p>
+      Jumper's routing engine (Li.Fi) queries dozens of bridges and DEX aggregators in parallel and ranks
+      returned routes by three main dimensions:
+    </p>
+
+    <div class="grid-2">
+      <div class="mini">
+        <h3>Optimise for output (default)</h3>
+        <p style="color:var(--muted)">Maximises the token amount received on the destination chain. May use slower bridges or more complex multi-hop paths if they yield more tokens after fees.</p>
+      </div>
+      <div class="mini">
+        <h3>Optimise for speed</h3>
+        <p style="color:var(--muted)">Prioritises the fastest finality time. Some bridges settle in minutes; others require 15–30+ minutes for Ethereum finalisation. Speed routes may cost more.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem">
+      Each displayed route shows the bridge used, any intermediate DEX swap, estimated time to completion,
+      total fees, and the final received amount. Jumper makes this data visible so users can
+      make an informed trade-off rather than blindly accepting the first result.
+    </p>
+
+    <div class="note">
+      <strong>Route freshness:</strong> Routes are quoted in real-time but prices and availability shift.
+      If you wait several minutes before confirming, refresh the route to avoid stale price data and potential failed transactions.
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="card" id="how-to">
+    <h2>How to Use Jumper Exchange: Step-by-Step Bridging Tutorial</h2>
+    <ol style="padding-left:1.3rem">
+      <li style="margin-bottom:.6rem">
+        <strong>Go to the official Jumper Exchange URL</strong> — always use a bookmarked link. Confirm the URL in your browser before connecting your wallet.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Connect a non-custodial wallet</strong> — MetaMask, Rabby, WalletConnect, or Coinbase Wallet are all supported. Use a hardware wallet for large amounts.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Select source chain and token</strong> — choose the chain you're sending from and the token you want to bridge or swap.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Select destination chain and token</strong> — this is the chain and token you want to receive. These can be different tokens (bridge + swap in one step).
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Enter the amount and review available routes</strong> — compare routes by output amount, fees, and speed. Select the route that fits your needs.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Check slippage tolerance</strong> — default slippage is usually 0.5–1%. For volatile tokens or low-liquidity routes, you may need to adjust.
+      </li>
+      <li style="margin-bottom:.6rem">
+        <strong>Confirm and sign the transaction in your wallet</strong> — verify the contract address and transaction details before signing.
+      </li>
+      <li>
+        <strong>Track the transaction</strong> — Jumper provides a tracking link. For cross-chain transactions, finality can take from a few minutes to 30+ minutes depending on the bridge.
+      </li>
+    </ol>
+
+    <div class="note">
+      <strong>Before any large bridge:</strong> test with a small amount first. Cross-chain transactions are irreversible.
+      A $2 test costs little; a failed $10,000 bridge is a much larger problem.
+    </div>
+  </section>
+
+  <!-- SLIPPAGE -->
+  <section class="card" id="slippage">
+    <h2>Slippage on Jumper Exchange: What It Means and How to Set It Correctly</h2>
+    <p>
+      <strong>Slippage</strong> is the difference between the expected output when you submit a transaction
+      and the actual output when it executes. On cross-chain swaps, slippage can occur at the source DEX,
+      the destination DEX, or both.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Slippage guide">
+        <thead>
+          <tr><th>Scenario</th><th>Recommended slippage</th><th>Reason</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Stablecoin ↔ Stablecoin bridge</td>
+            <td>0.1% – 0.3%</td>
+            <td>Tight liquidity, predictable price</td>
+          </tr>
+          <tr>
+            <td>ETH or large-cap token</td>
+            <td>0.3% – 0.5%</td>
+            <td>Good liquidity across routes</td>
+          </tr>
+          <tr class="hi">
+            <td>Mid/small-cap token swap</td>
+            <td>0.5% – 1.5%</td>
+            <td>Lower liquidity, more price impact</td>
+          </tr>
+          <tr>
+            <td>Congested network / peak gas</td>
+            <td>1% – 2%</td>
+            <td>Transaction may take longer to settle</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <strong>Don't set slippage too high:</strong> Very high slippage (5%+) makes your transaction vulnerable
+      to MEV sandwich attacks, where bots front-run your swap and extract the gap between your expected
+      and maximum-acceptable price.
+    </div>
+  </section>
+
+  <!-- SAFETY -->
+  <section class="card" id="safety">
+    <h2>Is Jumper Exchange Safe? Bridge Risk, Smart-Contract Risk, and What Can Go Wrong</h2>
+    <p>
+      Jumper Exchange is built on Li.Fi, a protocol with a track record and multiple security audits.
+      But aggregating bridges means aggregating their individual risk surfaces. Every bridge in the route
+      is a separate smart-contract system.
+    </p>
+
+    <div class="table-wrap">
+      <table aria-label="Risk table">
+        <thead>
+          <tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Smart-contract exploit (bridge)</td>
+            <td class="warn">Medium-High</td>
+            <td>Li.Fi audits + bridge-level audits; use well-established routes</td>
+          </tr>
+          <tr>
+            <td>Stuck / pending transaction</td>
+            <td class="warn">Medium</td>
+            <td>Jumper's built-in refund mechanism; allow sufficient time</td>
+          </tr>
+          <tr class="hi">
+            <td>Wrong destination chain/token</td>
+            <td class="err">High (user error)</td>
+            <td>Double-check chain and token before confirming — irreversible</td>
+          </tr>
+          <tr>
+            <td>Phishing / fake Jumper site</td>
+            <td class="err">High (user-controlled)</td>
+            <td>Bookmark official URL; verify domain before connecting wallet</td>
+          </tr>
+          <tr class="hi">
+            <td>Liquidity crunch on bridge</td>
+            <td class="warn">Low-Medium</td>
+            <td>Jumper shows available liquidity per route; choose routes with depth</td>
+          </tr>
+          <tr>
+            <td>MEV / sandwich attack on swap</td>
+            <td class="warn">Medium</td>
+            <td>Use reasonable slippage (≤1%); avoid very high slippage tolerance</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <strong>Historical note:</strong> Li.Fi experienced a smart-contract exploit in 2024 affecting certain
+      token approvals. The protocol responded with patches and improved approval management.
+      Always revoke stale token approvals after bridging via any DeFi protocol.
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="card" id="comparison">
+    <h2>Jumper Exchange vs Other Bridge Aggregators: Key Trade-offs</h2>
+
+    <div class="table-wrap">
+      <table aria-label="Comparison table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Jumper (Li.Fi)</th>
+            <th>Socket (Bungee)</th>
+            <th>Rango Exchange</th>
+            <th>Direct bridge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hi">
+            <td>Route aggregation</td>
+            <td class="ok">Yes — 20+ bridges</td>
+            <td class="ok">Yes — multiple bridges</td>
+            <td class="ok">Yes — broad coverage</td>
+            <td class="warn">No — single bridge</td>
+          </tr>
+          <tr>
+            <td>Swap + bridge in one step</td>
+            <td class="ok">Yes</td>
+            <td class="ok">Yes</td>
+            <td class="ok">Yes</td>
+            <td class="err">Rarely</td>
+          </tr>
+          <tr class="hi">
+            <td>Non-EVM support</td>
+            <td class="ok">Solana + others</td>
+            <td class="warn">Limited</td>
+            <td class="ok">Broad</td>
+            <td class="warn">Depends</td>
+          </tr>
+          <tr>
+            <td>UI clarity</td>
+            <td class="ok">Clean, modern</td>
+            <td class="ok">Good</td>
+            <td class="warn">More complex</td>
+            <td class="ok">Usually simple</td>
+          </tr>
+          <tr class="hi">
+            <td>Smart-contract risk</td>
+            <td class="warn">Aggregator + bridge</td>
+            <td class="warn">Aggregator + bridge</td>
+            <td class="warn">Aggregator + bridge</td>
+            <td class="ok">Bridge only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note" style="margin-top:1rem">
+      <strong>When to use a direct bridge instead:</strong> If you're doing a very large transfer on a
+      well-established route (e.g. ETH → Arbitrum via Arbitrum's native bridge), using the official
+      bridge directly reduces aggregator risk and is often the most trust-minimised option.
+    </div>
+  </section>
+
+  <!-- BEST PRACTICES -->
+  <section class="card" id="best-practices">
+    <h2>Best Practices for Bridging with Jumper Exchange: How to Avoid Costly Mistakes</h2>
+    <ul style="padding-left:1.2rem">
+      <li style="margin-bottom:.5rem"><strong>Always bookmark the official Jumper URL</strong> and check the domain before connecting your wallet — phishing sites are the most common cause of fund loss.</li>
+      <li style="margin-bottom:.5rem"><strong>Start with a small test transaction</strong> on any new route or token pair, especially on routes you haven't used before.</li>
+      <li style="margin-bottom:.5rem"><strong>Verify the destination chain and token</strong> match what you intend — cross-chain errors are irreversible.</li>
+      <li style="margin-bottom:.5rem"><strong>Keep slippage reasonable</strong> — 0.3–1% for most transactions. Avoid high slippage settings that expose you to MEV.</li>
+      <li style="margin-bottom:.5rem"><strong>Maintain gas on the destination chain</strong> — some bridges require a small gas payment to claim on arrival. Having zero gas on the destination can leave you unable to use received tokens.</li>
+      <li style="margin-bottom:.5rem"><strong>Revoke token approvals</strong> after bridging — unlimited approvals on bridge contracts are a security risk. Use Revoke.cash periodically.</li>
+      <li style="margin-bottom:.5rem"><strong>Use a hardware wallet</strong> for meaningful amounts — software wallets are significantly more vulnerable to phishing and malware.</li>
+      <li><strong>Don't rush during high-network congestion</strong> — gas spikes can make a bridge unexpectedly expensive. Wait for gas to normalise for non-urgent transfers.</li>
+    </ul>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="card" id="troubleshooting">
+    <h2>Jumper Exchange Troubleshooting: Stuck Transactions, Missing Funds &amp; Failed Bridges</h2>
+
+    <h3>"Transaction is pending / stuck for a long time"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Some bridges (especially those finalising on Ethereum mainnet) take 15–40 minutes. Check the estimated time shown when you selected the route.</li>
+      <li>Use Jumper's built-in transaction tracker — it shows which step the bridge is currently at.</li>
+      <li>If a transaction is genuinely stuck beyond the estimated time, Li.Fi offers a refund/recovery mechanism from the transaction history page.</li>
+    </ul>
+
+    <h3>"Tokens arrived on wrong chain" or "I can't find my tokens"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Confirm you have the destination chain added to your wallet and are viewing it. Many users forget to switch network in MetaMask after bridging.</li>
+      <li>Some tokens bridged via non-canonical bridges arrive as wrapped versions — add the wrapped token contract address to your wallet manually.</li>
+      <li>Check the destination chain block explorer using your wallet address to confirm whether tokens arrived on-chain, regardless of what the UI shows.</li>
+    </ul>
+
+    <h3>"Transaction failed / reverted"</h3>
+    <ul style="padding-left:1.2rem">
+      <li>Insufficient gas is the most common cause — ensure you have enough native token on the source chain to cover both the bridge and the gas fee.</li>
+      <li>Slippage exceeded tolerance — the market moved while your transaction was pending. Increase slippage slightly and retry.</li>
+      <li>Route became unavailable after you confirmed — bridge liquidity was depleted. Refresh routes and select an alternative.</li>
+    </ul>
+
+    <div class="note">
+      <strong>Always verify on-chain first</strong> — the Jumper UI can lag or display stale states.
+      Use the source and destination chain block explorers to confirm the true status of your funds.
+    </div>
+  </section>
+
+  <!-- EEAT -->
+  <section class="eeat" id="eeat" aria-labelledby="eeat-title">
+    <h2 id="eeat-title">Jumper Exchange: Authoritative References &amp; External Sources</h2>
+
+    <h3>Jumper Exchange &amp; Li.Fi Protocol</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://jumper.exchange/" target="_blank" rel="noopener nofollow">Jumper Exchange — Official Website</a></li>
+      <li><a href="https://li.fi/" target="_blank" rel="noopener nofollow">Li.Fi Protocol — Official Site</a></li>
+      <li><a href="https://docs.li.fi/" target="_blank" rel="noopener nofollow">Li.Fi — Technical Documentation</a></li>
+      <li><a href="https://github.com/lifinance" target="_blank" rel="noopener nofollow">Li.Fi — Smart Contracts &amp; Source Code (GitHub)</a></li>
+    </ul>
+
+    <h3>Cross-Chain Bridge Safety &amp; Education</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://ethereum.org/en/bridges/" target="_blank" rel="noopener nofollow">Ethereum.org — Bridges Overview</a></li>
+      <li><a href="https://blog.chainalysis.com/" target="_blank" rel="noopener nofollow">Chainalysis — Blockchain Security Research</a></li>
+      <li><a href="https://rekt.news/" target="_blank" rel="noopener nofollow">Rekt News — DeFi Exploit Post-Mortems</a></li>
+    </ul>
+
+    <h3>Security Hygiene &amp; Smart Contract Safety</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://revoke.cash/" target="_blank" rel="noopener nofollow">Revoke.cash — Token Approval Manager</a></li>
+      <li><a href="https://ethereum.org/en/guides/how-to-revoke-token-access/" target="_blank" rel="noopener nofollow">Ethereum.org — How to Revoke Token Access</a></li>
+      <li><a href="https://blog.openzeppelin.com/security-audits" target="_blank" rel="noopener nofollow">OpenZeppelin — Smart Contract Security Audits</a></li>
+    </ul>
+
+    <h3>DeFi Data &amp; Analytics</h3>
+    <ul style="padding-left:1.2rem">
+      <li><a href="https://defillama.com/" target="_blank" rel="noopener nofollow">DeFiLlama — Cross-Chain TVL &amp; Bridge Data</a></li>
+      <li><a href="https://dune.com/browse/dashboards" target="_blank" rel="noopener nofollow">Dune Analytics — On-chain Bridge Volume Dashboards</a></li>
+    </ul>
+
+    <div class="note" style="margin-top:1.25rem">
+      <strong>About:</strong> Prepared by Crypto Finance Experts as a practical, SEO-oriented knowledge base
+      for <em>Jumper Exchange</em>: cross-chain routing, fees, slippage, supported chains, security, comparisons, and troubleshooting.
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="card faq-section" aria-labelledby="faq" id="faq">
+    <h2 id="faq" style="margin-top:0;border-top:none;padding-top:0">Jumper Exchange: Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f1" id="b1">
+        <h3>What is Jumper Exchange and how is it different from a regular bridge?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f1" class="faq-content" role="region" aria-labelledby="b1">
+        <p>Jumper Exchange is a <strong>cross-chain bridge and swap aggregator</strong> powered by the Li.Fi protocol. Unlike a single bridge (which only connects two specific chains), Jumper queries 20+ bridges and DEX aggregators simultaneously, finds the best route, and can execute a bridge + swap in a single flow. You get better prices and more route options without manually comparing each bridge.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f2" id="b2">
+        <h3>How much does Jumper Exchange charge in fees?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f2" class="faq-content" role="region" aria-labelledby="b2">
+        <p>The total cost of a Jumper transaction includes: the underlying bridge protocol fee (typically 0.01–0.1%), any DEX swap fees if a cross-chain token swap is involved, gas on the source chain, and often a small Li.Fi/Jumper protocol fee on certain routes. The "You receive" number in the Jumper UI already reflects all fees except destination gas — use it as your real cost reference.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f3" id="b3">
+        <h3>Which chains does Jumper Exchange support?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f3" class="faq-content" role="region" aria-labelledby="b3">
+        <p>Jumper supports 30+ chains including Ethereum, Arbitrum, Optimism, Base, Polygon, BNB Chain, Avalanche, zkSync Era, Linea, Scroll, Solana, and more. The list expands regularly as Li.Fi adds new bridge integrations. Always check the current Jumper interface for the latest supported networks.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f4" id="b4">
+        <h3>How long does a Jumper Exchange bridge take?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f4" class="faq-content" role="region" aria-labelledby="b4">
+        <p>Bridge times vary by route. Optimistic rollup bridges to/from Ethereum mainnet (native exits) can take 7 days. Third-party bridges like Stargate or Hop typically settle in 1–15 minutes. Jumper shows the estimated time per route before you confirm, so you can choose speed vs. cost accordingly.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f5" id="b5">
+        <h3>Is Jumper Exchange safe to use?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f5" class="faq-content" role="region" aria-labelledby="b5">
+        <p>Jumper is built on the audited Li.Fi protocol and has been used for billions in cross-chain volume. However, every bridge it aggregates is a separate smart-contract system with its own risk profile. The main user-controlled risks are phishing (always verify the URL), wrong destination chain, and excessive token approvals. Treat cross-chain bridging as a higher-risk DeFi operation and always test new routes with small amounts first.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f6" id="b6">
+        <h3>What should I do if my Jumper transaction is stuck?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f6" class="faq-content" role="region" aria-labelledby="b6">
+        <p>First, check if the bridge's estimated time has actually elapsed — many users worry too early. Check on-chain using the source chain block explorer. If the transaction is genuinely stuck past the estimated time, use Li.Fi's transaction recovery tool accessible from the Jumper transaction history. For bridges that support refunds, you can reclaim tokens on the source chain if the bridge failed to deliver.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f7" id="b7">
+        <h3>What slippage should I use on Jumper Exchange?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f7" class="faq-content" role="region" aria-labelledby="b7">
+        <p>For stablecoin-to-stablecoin bridges, 0.1–0.3% is typically sufficient. For ETH or large-cap tokens, 0.3–0.5% covers normal market movement. For smaller-cap tokens or congested markets, 0.5–1.5% may be needed. Avoid setting slippage above 2–3% as it increases your vulnerability to MEV sandwich attacks, where bots extract profit from the gap between your expected and maximum-acceptable price.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f8" id="b8">
+        <h3>Does Jumper Exchange have a token or rewards program?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f8" class="faq-content" role="region" aria-labelledby="b8">
+        <p>Li.Fi, the protocol underlying Jumper, has explored tokenisation and incentive programs. Check the official Jumper and Li.Fi sites for the most current information on any rewards, referral programs, or token-related features, as these change over time and are not covered by this guide's static content.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-button" aria-expanded="false" aria-controls="f9" id="b9">
+        <h3>Can I bridge NFTs or only tokens on Jumper Exchange?</h3>
+        <span class="faq-plus">+</span>
+      </button>
+      <div id="f9" class="faq-content" role="region" aria-labelledby="b9">
+        <p>Jumper Exchange is primarily focused on fungible token bridging and cross-chain swaps. NFT bridging is a separate use case handled by dedicated NFT bridge protocols (such as LayerZero-based NFT bridges). For fungible ERC-20 tokens and native gas tokens, Jumper provides excellent coverage across supported chains.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="container" role="contentinfo" style="padding:2.5rem 0; border-top:1px solid var(--line-n); margin-top:2rem">
+  <p style="color:var(--muted-2); font-size:.95rem">© 2026 Jumper Exchange Guide. Educational content with a security-first operational focus. Not financial advice.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq-button').forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        const c = document.getElementById(b.getAttribute('aria-controls'));
+        c.classList.remove('open');
+        c.style.maxHeight = '0';
+      });
+      if (!expanded) {
+        btn.setAttribute('aria-expanded', 'true');
+        const content = document.getElementById(btn.getAttribute('aria-controls'));
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
